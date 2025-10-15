@@ -6,7 +6,7 @@ const navs = [
     link: "/",
   },
   {
-    name: "reads",
+    name: "read",
     link: "/read",
   },
   {
@@ -14,7 +14,7 @@ const navs = [
     link: "/watched",
   },
   {
-    name: "listens",
+    name: "listen",
     link: "/music",
   },
   {
@@ -22,9 +22,13 @@ const navs = [
     link: "/photos",
   },
   {
-    name: "links",
-    link: "/links",
+    name: "notes",
+    link: "/text",
   },
+  // {
+  //   name: "links",
+  //   link: "/links",
+  // },
 ];
 
 export { smile, navs };
