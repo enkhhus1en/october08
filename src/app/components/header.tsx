@@ -36,7 +36,7 @@ export const Header = () => {
           onClick={() => setTheme(theme === "light" ? "dark" : "light")}
         />
       </div>
-      <div className="flex justify-start items-center gap-3 py-3">
+      <div className="flex flex-wrap justify-start items-center gap-x-2 sm:gap-x-3 py-3 max-w-xs sm:flex-nowrap sm:gap-4">
         {navs.map((nav: any, index: number) => (
           <Link
             href={nav.link}
