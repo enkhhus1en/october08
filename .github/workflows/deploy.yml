@@ -9,16 +9,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1️⃣ Checkout your repository
+      # 1️⃣ Checkout repository
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # 2️⃣ Recreate .env file from GitHub Secret
-      - name: Write .env file
+      # 2️⃣ Create .env file from secret (GitLab-style)
+      - name: Create .env file
         run: |
           echo "${{ secrets.ENV_FILE }}" > .env
           echo ".env file created successfully"
-          ls -al .env
 
       # 3️⃣ Set up Docker Buildx
       - name: Set up Docker Buildx
