@@ -13,8 +13,6 @@ export const Header = () => {
   const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
 
-  console.log("pathname: ", pathname);
-
   useEffect(() => {
     setMounted(true);
   }, []);
@@ -23,10 +21,25 @@ export const Header = () => {
     return null;
   }
 
+  const navMaps = navs.map((nav: any, index: number) => (
+    <Link
+      href={nav.link}
+      key={`${nav.name}_${index}`}
+      className={
+        nav.name !== "feed" && pathname.includes(nav.link) ? "line-through" : ""
+      }
+    >
+      {nav.name}
+    </Link>
+  ));
+
   return (
     <header>
       <div className="flex justify-between items-center">
         <div className="text-2xl font-bold">{smile}</div>
+        <div className="hidden md:flex justify-center items-center gap-4">
+          {navMaps}
+        </div>
         <Image
           alt="theme"
           src={theme === "light" ? dark.src : light.src}
@@ -36,20 +49,8 @@ export const Header = () => {
           onClick={() => setTheme(theme === "light" ? "dark" : "light")}
         />
       </div>
-      <div className="flex flex-wrap justify-start items-center gap-x-2 sm:gap-x-3 py-3 max-w-xs sm:flex-nowrap sm:gap-4">
-        {navs.map((nav: any, index: number) => (
-          <Link
-            href={nav.link}
-            key={`${nav.name}_${index}`}
-            className={
-              nav.name !== "feed" && pathname.includes(nav.link)
-                ? "line-through"
-                : ""
-            }
-          >
-            {nav.name}
-          </Link>
-        ))}
+      <div className="md:hidden flex flex-wrap justify-start items-center gap-x-2 sm:gap-x-3 pt-3 max-w-xs sm:flex-nowrap sm:gap-4">
+        {navMaps}
       </div>
     </header>
   );

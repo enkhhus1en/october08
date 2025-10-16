@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, IBM_Plex_Mono } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import { Header } from "./components/header";
+import { Tracker } from "./components/tracker";
 
 import "./globals.css";
 
@@ -35,7 +36,8 @@ export default function RootLayout({
           <div className="w-full max-w-3xl p-4">
             <ThemeProvider attribute={"class"} defaultTheme="dark">
               <Header />
-              <main>{children}</main>
+              <Tracker />
+              <main className="py-5">{children}</main>
             </ThemeProvider>
           </div>
         </div>

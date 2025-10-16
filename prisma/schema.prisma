@@ -19,6 +19,7 @@ model Read {
   title     String
   author    String?
   notes     String?
+  coverUrl    String?
   rating    Int?
   createdAt DateTime @default(now())
 }
@@ -29,6 +30,7 @@ model Watched {
   type      String?
   platform  String?
   notes     String?
+  coverUrl    String?
   rating    Int?
   createdAt DateTime @default(now())
 }
@@ -57,4 +59,12 @@ model Link {
   url         String
   description String?
   createdAt   DateTime @default(now())
+}
+
+model PageView {
+  id        Int      @id @default(autoincrement())
+  path      String
+  userAgent String?
+  ip        String?
+  createdAt DateTime @default(now())
 }
