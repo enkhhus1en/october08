@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { useTheme } from "next-themes";
 import { smile, navs } from "../constants/layout-constants";
 import { dark, light } from "@/assets/icons";
@@ -26,9 +27,12 @@ export const Header = () => {
     <header>
       <div className="flex justify-between items-center">
         <div className="text-2xl font-bold">{smile}</div>
-        <img
+        <Image
+          alt="theme"
           src={theme === "light" ? dark.src : light.src}
-          className="h-8 cursor-pointer"
+          width={30}
+          height={30}
+          className="cursor-pointer"
           onClick={() => setTheme(theme === "light" ? "dark" : "light")}
         />
       </div>
