@@ -5,6 +5,7 @@ import { Header } from "./components/header";
 import { Tracker } from "./components/tracker";
 
 import "./globals.css";
+import { AuthProvider } from "./components/providers/auth-provider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -34,11 +35,13 @@ export default function RootLayout({
       <body className={`${ibmMono.variable} ${inter.variable} antialiased`}>
         <div className="flex flex-col items-center min-h-screen">
           <div className="w-full max-w-3xl p-4">
-            <ThemeProvider attribute={"class"} defaultTheme="dark">
-              <Header />
-              <Tracker />
-              <main className="py-5">{children}</main>
-            </ThemeProvider>
+            <AuthProvider>
+              <ThemeProvider attribute={"class"} defaultTheme="dark">
+                <Header />
+                <Tracker />
+                <main className="py-5">{children}</main>
+              </ThemeProvider>
+            </AuthProvider>
           </div>
         </div>
       </body>

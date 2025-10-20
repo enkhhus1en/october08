@@ -68,3 +68,9 @@ model PageView {
   ip        String?
   createdAt DateTime @default(now())
 }
+
+model LoginLog {
+  id Int @id @default(autoincrement())
+  username String
+  timestamp DateTime @default(now())
+}
