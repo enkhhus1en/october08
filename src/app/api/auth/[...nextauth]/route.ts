@@ -9,17 +9,28 @@ const handler = NextAuth({
     GithubProvider({
       clientId: process.env.GITHUB_ID!,
       clientSecret: process.env.GITHUB_SECRET!,
+      profile(profile) {
+        return {
+          id: profile.id.toString(),
+          name: profile.name || profile.login,
+          email: profile.email,
+          image: profile.avatar_url,
+          login: profile.login, // keep GitHub username
+        };
+      },
     }),
   ],
 
   callbacks: {
     async signIn({ profile }) {
+      console.log("profileee::: ", profile);
+      const p = profile as typeof profile & { login?: string };
       const allowedUsers = ["enkhhus1en"];
-      if (!profile || !allowedUsers.includes(profile.sub!)) return false;
+      if (!p || !allowedUsers.includes(p.login!)) return false;
 
       await prisma.loginLog.create({
         data: {
-          username: profile.sub!,
+          username: p.login!,
           timestamp: new Date(),
         },
       });
