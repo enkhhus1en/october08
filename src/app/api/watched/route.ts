@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
+import { requireAuth } from "@/lib/auth";
 
 const prisma = new PrismaClient();
 
@@ -19,12 +20,18 @@ export async function GET(req: Request) {
 }
 
 export async function POST(req: Request) {
+  const auth = await requireAuth();
+  if (!auth.authorized) return auth.response;
+
   const data = await req.json();
   const newLink = await prisma.watched.create({ data });
   return NextResponse.json(newLink, { status: 201 });
 }
 
 export async function PUT(req: Request) {
+  const auth = await requireAuth();
+  if (!auth.authorized) return auth.response;
+
   const data = await req.json();
   const { id, ...updateData } = data;
 
@@ -37,6 +44,9 @@ export async function PUT(req: Request) {
 }
 
 export async function DELETE(req: Request) {
+  const auth = await requireAuth();
+  if (!auth.authorized) return auth.response;
+
   const { searchParams } = new URL(req.url);
   const id = searchParams.get("id");
 

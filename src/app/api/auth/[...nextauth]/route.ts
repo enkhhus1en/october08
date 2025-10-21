@@ -4,7 +4,7 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-const handler = NextAuth({
+export const authOptions = {
   providers: [
     GithubProvider({
       clientId: process.env.GITHUB_ID!,
@@ -15,17 +15,16 @@ const handler = NextAuth({
           name: profile.name || profile.login,
           email: profile.email,
           image: profile.avatar_url,
-          login: profile.login, // keep GitHub username
+          login: profile.login,
         };
       },
     }),
   ],
 
   callbacks: {
-    async signIn({ profile }) {
-      console.log("profileee::: ", profile);
+    async signIn({ profile }: any) {
       const p = profile as typeof profile & { login?: string };
-      const allowedUsers = ["enkhhus1en"];
+      const allowedUsers = ["enkhhus1en"]; // your username
       if (!p || !allowedUsers.includes(p.login!)) return false;
 
       await prisma.loginLog.create({
@@ -38,7 +37,10 @@ const handler = NextAuth({
       return true;
     },
   },
-  secret: process.env.NEXTAUTH_SECRET,
-});
 
+  secret: process.env.NEXTAUTH_SECRET,
+};
+
+// 👇 export your configured handler for Next.js routing
+const handler = NextAuth(authOptions);
 export { handler as GET, handler as POST };
