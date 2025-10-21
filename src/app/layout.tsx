@@ -1,5 +1,10 @@
 import type { Metadata } from "next";
-import { Inter, IBM_Plex_Mono } from "next/font/google";
+import {
+  Inter,
+  IBM_Plex_Mono,
+  Space_Mono,
+  Ubuntu_Mono,
+} from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import { Header } from "./components/header";
 import { Tracker } from "./components/tracker";
@@ -20,6 +25,18 @@ const ibmMono = IBM_Plex_Mono({
   display: "swap",
 });
 
+const spaceMono = Space_Mono({
+  subsets: ["latin"], // choose subsets you need
+  weight: ["400", "700"], // request only weights you use
+  variable: "--font-space-mono", // optional CSS variable if you want it
+});
+
+const ubuntuMono = Ubuntu_Mono({
+  subsets: ["latin"],
+  weight: ["400", "700"], // or ['400'] if you only use regular
+  variable: "--font-ubuntu-mono",
+});
+
 export const metadata: Metadata = {
   title: ":]",
   description: "",
@@ -32,7 +49,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${ibmMono.variable} ${inter.variable} antialiased`}>
+      <body className={`${ubuntuMono.variable} antialiased`}>
         <div className="flex flex-col items-center min-h-screen">
           <div className="w-full max-w-3xl p-4">
             <AuthProvider>
