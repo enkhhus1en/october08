@@ -37,9 +37,9 @@ export const Header = () => {
     <header>
       <div className="flex justify-between items-center">
         <div className="text-2xl font-bold">{smile}</div>
-        <div className="hidden md:flex justify-center items-center gap-4">
+        {/* <div className="hidden md:flex justify-center items-center gap-4">
           {navMaps}
-        </div>
+        </div> */}
         <Image
           alt="theme"
           src={theme === "light" ? dark.src : light.src}
@@ -49,7 +49,7 @@ export const Header = () => {
           onClick={() => setTheme(theme === "light" ? "dark" : "light")}
         />
       </div>
-      <div className="md:hidden flex flex-wrap justify-start items-center gap-x-2 sm:gap-x-3 pt-3 max-w-xs sm:flex-nowrap sm:gap-4">
+      <div className="flex flex-wrap justify-start items-center gap-x-2 sm:gap-x-4 pt-3 max-w-xs sm:flex-nowrap sm:gap-4">
         {navMaps}
       </div>
     </header>

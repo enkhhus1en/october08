@@ -3,7 +3,7 @@ const smile = ":]";
 const navs = [
   {
     name: "feed",
-    link: "/",
+    link: "/feed",
   },
   {
     name: "read",

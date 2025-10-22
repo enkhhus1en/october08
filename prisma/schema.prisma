@@ -30,7 +30,7 @@ model Watched {
   type      String?
   platform  String?
   notes     String?
-  coverUrl    String?
+  coverUrl  String?
   rating    Int?
   createdAt DateTime @default(now())
 }
