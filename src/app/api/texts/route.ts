@@ -13,8 +13,8 @@ export async function GET(req: Request) {
     return NextResponse.json(text);
   }
 
-  const links = await prisma.text.findMany({ orderBy: { createdAt: "desc" } });
-  return NextResponse.json(links);
+  const texts = await prisma.text.findMany({ orderBy: { createdAt: "desc" } });
+  return NextResponse.json(texts);
 }
 
 export async function POST(req: Request) {
@@ -22,8 +22,8 @@ export async function POST(req: Request) {
   if (!auth.authorized) return auth.response;
 
   const data = await req.json();
-  const newLink = await prisma.text.create({ data });
-  return NextResponse.json(newLink, { status: 201 });
+  const newText = await prisma.text.create({ data });
+  return NextResponse.json(newText, { status: 201 });
 }
 
 export async function PUT(req: Request) {
