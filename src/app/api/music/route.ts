@@ -13,7 +13,9 @@ export async function GET(req: Request) {
     return NextResponse.json(text);
   }
 
-  const links = await prisma.music.findMany({ orderBy: { createdAt: "desc" } });
+  const links = await prisma.music.findMany({
+    orderBy: { createdAt: "desc" },
+  });
   return NextResponse.json(links);
 }
 
