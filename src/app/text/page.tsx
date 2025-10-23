@@ -1,8 +1,9 @@
 "use client";
 
-import { datetimeformat } from "@/lib/datetime";
 import React, { useEffect, useState, useTransition } from "react";
 import { text } from "text";
+import { datetimeformat } from "@/lib/datetime";
+import { Dots } from "@/components/dots";
 
 type Props = {};
 
@@ -40,6 +41,7 @@ const Text = (props: Props) => {
               </div>
             </div>
           ))}
+        {isPending && <Dots />}
       </div>
     </div>
   );

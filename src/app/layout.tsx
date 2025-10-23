@@ -6,11 +6,11 @@ import {
   Ubuntu_Mono,
 } from "next/font/google";
 import { ThemeProvider } from "next-themes";
-import { Header } from "./components/header";
-import { Tracker } from "./components/tracker";
+import { Header } from "@/components/header";
+import { Tracker } from "@/components/tracker";
 
 import "./globals.css";
-import { AuthProvider } from "./components/providers/auth-provider";
+import { AuthProvider } from "@/components/providers/auth-provider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -26,14 +26,14 @@ const ibmMono = IBM_Plex_Mono({
 });
 
 const spaceMono = Space_Mono({
-  subsets: ["latin"], // choose subsets you need
-  weight: ["400", "700"], // request only weights you use
-  variable: "--font-space-mono", // optional CSS variable if you want it
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  variable: "--font-space-mono",
 });
 
 const ubuntuMono = Ubuntu_Mono({
   subsets: ["latin"],
-  weight: ["400", "700"], // or ['400'] if you only use regular
+  weight: ["400", "700"],
   variable: "--font-ubuntu-mono",
 });
 
@@ -51,7 +51,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${ubuntuMono.variable} antialiased`}>
         <div className="flex flex-col items-center min-h-screen">
-          <div className="w-full max-w-3xl p-4">
+          <div className="w-full max-w-3xl p-5">
             <AuthProvider>
               <ThemeProvider attribute={"class"} defaultTheme="dark">
                 <Header />
