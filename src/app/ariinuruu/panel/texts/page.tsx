@@ -3,6 +3,7 @@
 import React, { useEffect, useState, useTransition } from "react";
 import { datetimeformat } from "@/lib/datetime";
 import { text } from "text";
+import { Text } from "@/components/text";
 
 const TextAdmin = () => {
   const [text, setText] = useState<string>();
@@ -108,10 +109,7 @@ const TextAdmin = () => {
           {textList &&
             textList.map((text, index) => (
               <div key={`text_${text.id}_${index}`}>
-                <div>{text.content}</div>
-                <div className="text-xs text-red-200">
-                  {datetimeformat(text.createdAt)}
-                </div>
+                <Text text={text} />
                 <button
                   className="underline text-red-500 text-xs"
                   onClick={() => {

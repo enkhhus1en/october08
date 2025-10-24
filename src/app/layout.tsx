@@ -11,6 +11,7 @@ import { Tracker } from "@/components/tracker";
 
 import "./globals.css";
 import { AuthProvider } from "@/components/providers/auth-provider";
+// import { PageTransition } from "@/components/transition";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -56,7 +57,9 @@ export default function RootLayout({
               <ThemeProvider attribute={"class"} defaultTheme="dark">
                 <Header />
                 <Tracker />
+                {/* <PageTransition> */}
                 <main className="py-5">{children}</main>
+                {/* </PageTransition> */}
               </ThemeProvider>
             </AuthProvider>
           </div>

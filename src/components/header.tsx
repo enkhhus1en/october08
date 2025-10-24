@@ -25,9 +25,7 @@ export const Header = () => {
     <Link
       href={nav.link}
       key={`${nav.name}_${index}`}
-      className={
-        nav.name !== "feed" && pathname.includes(nav.link) ? "line-through" : ""
-      }
+      className={pathname.includes(nav.link) ? "line-through" : ""}
     >
       {nav.name}
     </Link>

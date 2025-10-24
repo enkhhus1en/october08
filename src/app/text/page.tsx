@@ -2,12 +2,12 @@
 
 import React, { useEffect, useState, useTransition } from "react";
 import { text } from "text";
-import { datetimeformat } from "@/lib/datetime";
+import { Text } from "@/components/text";
 import { Dots } from "@/components/dots";
 
 type Props = {};
 
-const Text = (props: Props) => {
+const Texts = (props: Props) => {
   const [textList, setTextLists] = useState<text[]>([]);
   const [isPending, startTransition] = useTransition();
 
@@ -34,12 +34,7 @@ const Text = (props: Props) => {
       <div className="space-y-4">
         {textList &&
           textList.map((text, index) => (
-            <div key={`text_${text.id}_${index}`}>
-              <div className="text-xs">{text.content}</div>
-              <div className="text-[0.6rem] text-red-400 dark:text-red-200">
-                {datetimeformat(text.createdAt)}
-              </div>
-            </div>
+            <Text key={`text_${text.id}_${index}`} text={text} />
           ))}
         {isPending && <Dots />}
       </div>
@@ -47,4 +42,4 @@ const Text = (props: Props) => {
   );
 };
 
-export default Text;
+export default Texts;
