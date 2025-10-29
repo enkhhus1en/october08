@@ -2,17 +2,20 @@ FROM node:20-alpine AS builder
 
 WORKDIR /app
 
+# Add build tools for native modules
+RUN apk add --no-cache python3 make g++
+
 COPY package*.json ./
 
-RUN npm install
+# Install dependencies safely (ignore peer dep issues)
+RUN npm ci --legacy-peer-deps
 
 COPY . .
 
 RUN npx prisma generate
-
 RUN npm run build
 
-FROM node:18-alpine AS runner
+FROM node:20-alpine AS runner
 
 WORKDIR /app
 
