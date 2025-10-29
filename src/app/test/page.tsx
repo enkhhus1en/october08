@@ -33,9 +33,9 @@ export default function TestUploadPage() {
       }
 
       const data = await res.json();
-      setMessage(`✅ Uploaded successfully: ${data.fileUrl}`);
+      setMessage(`success: ${data.fileUrl}`);
     } catch (err: any) {
-      setMessage(`❌ Upload failed: ${err.message}`);
+      setMessage(`failed: ${err.message}`);
     } finally {
       setLoading(false);
     }
@@ -63,14 +63,12 @@ export default function TestUploadPage() {
         disabled={loading}
         className="px-4 py-2 rounded bg-foreground text-background hover:opacity-80 disabled:opacity-50"
       >
-        {loading ? "Uploading..." : "Upload"}
+        {loading ? "..." : "upload"}
       </button>
 
       {message && (
         <p
-          className={`mt-2 text-sm ${
-            message.startsWith("✅") ? "text-green-500" : "text-red-500"
-          }`}
+          className={`mt-2 text-sm`}
         >
           {message}
         </p>
