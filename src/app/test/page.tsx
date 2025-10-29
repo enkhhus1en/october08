@@ -10,7 +10,7 @@ export default function TestUploadPage() {
 
   const handleUpload = async () => {
     if (!file) {
-      setMessage("Please select a file first.");
+      setMessage("⚠️ Please select a file first.");
       return;
     }
 
@@ -33,9 +33,10 @@ export default function TestUploadPage() {
       }
 
       const data = await res.json();
-      setMessage(`success: ${data.fileUrl}`);
-    } catch (err: any) {
-      setMessage(`failed: ${err.message}`);
+      setMessage(`✅ Uploaded successfully: ${data.url}`);
+    } catch (err: unknown) {
+      const error = err instanceof Error ? err.message : "Unknown error";
+      setMessage(`❌ Upload failed: ${error}`);
     } finally {
       setLoading(false);
     }
@@ -48,6 +49,7 @@ export default function TestUploadPage() {
       <input
         type="file"
         onChange={(e) => setFile(e.target.files?.[0] || null)}
+        className="text-sm"
       />
 
       <input
@@ -61,14 +63,22 @@ export default function TestUploadPage() {
       <button
         onClick={handleUpload}
         disabled={loading}
-        className="px-4 py-2 rounded bg-foreground text-background hover:opacity-80 disabled:opacity-50"
+        className="px-4 py-2 rounded bg-foreground text-background hover:opacity-80 disabled:opacity-50 transition"
       >
-        {loading ? "..." : "upload"}
+        {loading ? "Uploading..." : "Upload"}
       </button>
 
       {message && (
         <p
-          className={`mt-2 text-sm`}
+          className={`mt-2 text-sm ${
+            message.startsWith("✅")
+              ? "text-green-600"
+              : message.startsWith("⚠️")
+                ? "text-yellow-600"
+                : message.startsWith("❌")
+                  ? "text-red-600"
+                  : ""
+          }`}
         >
           {message}
         </p>
