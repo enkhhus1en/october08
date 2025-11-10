@@ -48,8 +48,6 @@ const PanelPhotos = (props: Props) => {
         body: JSON.stringify(photoBody),
       });
 
-      console.log("photo res: ", photoRes);
-
       if (!photoRes.ok) {
         const text = await res.text();
         throw new Error(`error on /api/photos ${photoRes.status}: ${text}`);

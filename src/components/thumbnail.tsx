@@ -6,6 +6,14 @@ type Props = {
   photo: photo;
 };
 
-export const Thumbnail = (props: Props) => {
-  return <div>Thumbnail</div>;
+export const Thumbnail = ({ photo }: Props) => {
+  return (
+    <div className="relative aspect-square">
+      <img
+        src={photo.url}
+        className={`object-center rounded-md`}
+        alt={photo.caption}
+      />
+    </div>
+  );
 };
