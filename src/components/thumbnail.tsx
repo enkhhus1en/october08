@@ -11,7 +11,7 @@ export const Thumbnail = ({ photo }: Props) => {
     <div className="relative aspect-square">
       <img
         src={photo.url}
-        className={`object-center rounded-md`}
+        className={`w-full h-full object-cover rounded-md`}
         alt={photo.caption}
       />
     </div>
