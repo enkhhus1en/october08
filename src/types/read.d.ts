@@ -1,6 +1,6 @@
 declare module "read" {
   interface read {
-    id?: string | number;
+    id: number;
     title: string;
     author?: string;
     notes?: string;

@@ -1,6 +1,6 @@
 declare module "photo" {
   interface photo {
-    id?: string | number;
+    id: number;
     url: string;
     caption: string;
     takenAt: string;
