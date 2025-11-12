@@ -55,7 +55,7 @@ export default function ReadsPage() {
 
   async function handleDelete(id: number) {
     if (!confirm("Delete this entry?")) return;
-    await fetch(`/api/reads/${id}`, { method: "DELETE" });
+    await fetch(`/api/reads?id=${id}`, { method: "DELETE" });
     fetchReads();
   }
 
