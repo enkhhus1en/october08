@@ -25,7 +25,11 @@ export const Header = () => {
     <Link
       href={nav.link}
       key={`${nav.name}_${index}`}
-      className={pathname.includes(nav.link) ? "line-through" : ""}
+      className={
+        pathname.includes(nav.link)
+          ? "bg-rose-200 dark:bg-rose-900 px-0.5 -mx-0.5 bg-opacity-50 dark:bg-opacity-40"
+          : ""
+      }
     >
       {nav.name}
     </Link>
