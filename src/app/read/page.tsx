@@ -1,6 +1,7 @@
 "use client";
 
 import { BookCover } from "@/components/book-cover";
+import { PageTitle } from "@/components/page-title";
 import Link from "next/link";
 import React, { useState, useEffect, useTransition } from "react";
 import { read } from "read";
@@ -28,7 +29,11 @@ const Read = () => {
   };
 
   return (
-    <div>
+    <div className="space-y-8">
+      <PageTitle
+        title="read"
+        description="bro is a terrible reader but yeah here is a list of books i've read or currently reading."
+      />
       <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">
         {reads &&
           reads.map((read: read, index: number) => (

@@ -3,6 +3,9 @@
 import { useEffect, useState } from "react";
 import { watched } from "watched";
 import Image from "next/image";
+import { PageTitle } from "@/components/page-title";
+import { IDKBRO } from "@/components/idk";
+import { Dots } from "@/components/dots";
 
 export default function Watched() {
   const [items, setItems] = useState<watched[]>([]);
@@ -32,22 +35,15 @@ export default function Watched() {
     filter === "all" ? items : items.filter((item) => item.type === filter);
 
   if (loading) {
-    return (
-      <div className="flex justify-center items-center min-h-[60vh]">
-        <p className="text-muted-foreground">Loading...</p>
-      </div>
-    );
+    return <Dots />;
   }
 
   return (
     <div className="space-y-8">
-      <div className="space-y-3">
-        <h1 className="text-3xl font-bold">Watched</h1>
-        <p className="text-muted-foreground">
-          Movies, series, and shows I've watched
-        </p>
-      </div>
-
+      <PageTitle
+        title="watched"
+        description="movies, series, animes and shows I've watched"
+      />
       {types.length > 1 && (
         <div className="flex flex-wrap gap-2">
           {types.map((type) => (
@@ -67,9 +63,7 @@ export default function Watched() {
       )}
 
       {filteredItems.length === 0 ? (
-        <p className="text-center text-muted-foreground py-12">
-          No items found
-        </p>
+        <IDKBRO />
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {filteredItems.map((item) => (

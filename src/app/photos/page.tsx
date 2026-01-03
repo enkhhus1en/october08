@@ -5,6 +5,7 @@ import { photo } from "photo";
 import { Thumbnail } from "@/components/thumbnail";
 import { Dots } from "@/components/dots";
 import Link from "next/link";
+import { PageTitle } from "@/components/page-title";
 
 type Props = {};
 
@@ -31,7 +32,8 @@ const Photos = (props: Props) => {
   };
 
   return (
-    <div>
+    <div className="space-y-8">
+      <PageTitle title="photos" />
       <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">
         {photos &&
           photos.map((photo: photo, index: number) => (

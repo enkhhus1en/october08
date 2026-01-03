@@ -4,6 +4,7 @@ import React, { useEffect, useState, useTransition } from "react";
 import { text } from "text";
 import { Text } from "@/components/text";
 import { Dots } from "@/components/dots";
+import { PageTitle } from "@/components/page-title";
 
 type Props = {};
 
@@ -30,7 +31,8 @@ const Texts = (props: Props) => {
   };
 
   return (
-    <div>
+    <div className="space-y-8">
+      <PageTitle title="notes" description="bla bla bla" />
       <div className="space-y-4">
         {textList &&
           textList.map((text, index) => (
