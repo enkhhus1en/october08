@@ -1,9 +1,13 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { text } from "text";
+import { read } from "read";
+import { watched } from "watched";
+import { photo } from "photo";
 
 export async function GET() {
   try {
-    const [texts, reads, watched, music, links, photos] = await Promise.all([
+    const [texts, reads, watched, photos] = await Promise.all([
       prisma.text.findMany({
         orderBy: { createdAt: "desc" },
       }),
@@ -11,9 +15,6 @@ export async function GET() {
         orderBy: { createdAt: "desc" },
       }),
       prisma.watched.findMany({
-        orderBy: { createdAt: "desc" },
-      }),
-      prisma.music.findMany({
         orderBy: { createdAt: "desc" },
       }),
       prisma.link.findMany({
@@ -25,27 +26,23 @@ export async function GET() {
     ]);
 
     const feed: any[] = [
-      ...texts.map((t) => ({
+      ...texts.map((t: text) => ({
         ...t,
         type: "text",
       })),
-      ...reads.map((r) => ({
+      ...reads.map((r: read) => ({
         ...r,
         type: "read",
       })),
-      ...watched.map((w) => ({
+      ...watched.map((w: watched) => ({
         ...w,
         type: "watched",
       })),
-      ...music.map((m) => ({
-        ...m,
-        type: "music",
-      })),
-      ...links.map((l) => ({
-        ...l,
-        type: "link",
-      })),
-      photos.map((p) => ({
+      // ...links.map((l) => ({
+      //   ...l,
+      //   type: "link",
+      // })),
+      photos.map((p: photo) => ({
         ...p,
         type: "photo",
       })),

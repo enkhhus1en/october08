@@ -1,3 +1,4 @@
+import { IDKBRO } from "@/components/idk";
 import { PageTitle } from "@/components/page-title";
 import React from "react";
 
@@ -7,6 +8,7 @@ const Music = (props: Props) => {
   return (
     <div className="space-y-8">
       <PageTitle title="listen" description="uhmmm " />
+      <IDKBRO />
     </div>
   );
 };

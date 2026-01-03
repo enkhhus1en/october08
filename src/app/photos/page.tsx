@@ -6,6 +6,7 @@ import { Thumbnail } from "@/components/thumbnail";
 import { Dots } from "@/components/dots";
 import Link from "next/link";
 import { PageTitle } from "@/components/page-title";
+import { IDKBRO } from "@/components/idk";
 
 type Props = {};
 
@@ -34,9 +35,9 @@ const Photos = (props: Props) => {
   return (
     <div className="space-y-8">
       <PageTitle title="photos" description="[◉°]" />
-      <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">
-        {photos &&
-          photos.map((photo: photo, index: number) => (
+      {!isPending && photos && photos?.length > 0 ? (
+        <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">
+          {photos.map((photo: photo, index: number) => (
             <Link
               href={`/photos/${photo.id}`}
               key={`zurag_hurug_${index}_${photo.id}`}
@@ -44,8 +45,11 @@ const Photos = (props: Props) => {
               <Thumbnail photo={photo} />
             </Link>
           ))}
-      </div>
-      {isPending && <Dots />}
+        </div>
+      ) : (
+        <IDKBRO />
+      )}
+      {isPending && !photos && <Dots />}
     </div>
   );
 };

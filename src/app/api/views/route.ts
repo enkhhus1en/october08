@@ -8,6 +8,8 @@ export async function GET(req: Request) {
 
   const { searchParams } = new URL(req.url);
   const id = searchParams.get("id");
+  const page = searchParams.get("page");
+  const limit = searchParams.get("limit");
 
   if (id) {
     const text = await prisma.pageView.findUnique({
@@ -16,10 +18,26 @@ export async function GET(req: Request) {
     return NextResponse.json(text);
   }
 
-  const links = await prisma.pageView.findMany({
-    take: 50,
-    skip: 0,
-    orderBy: { createdAt: "desc" },
+  const pageNumber = page ? Number(page) : 1;
+  const pageLimit = limit ? Number(limit) : 50;
+  const skip = (pageNumber - 1) * pageLimit;
+
+  const [views, totalCount] = await Promise.all([
+    prisma.pageView.findMany({
+      take: pageLimit,
+      skip: skip,
+      orderBy: { createdAt: "desc" },
+    }),
+    prisma.pageView.count(),
+  ]);
+
+  return NextResponse.json({
+    data: views,
+    pagination: {
+      page: pageNumber,
+      limit: pageLimit,
+      total: totalCount,
+      totalPages: Math.ceil(totalCount / pageLimit),
+    },
   });
-  return NextResponse.json(links);
 }
