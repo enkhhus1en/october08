@@ -1,6 +1,8 @@
 "use client";
 
 import { BookCover } from "@/components/book-cover";
+import { Dots } from "@/components/dots";
+import { IDKBRO } from "@/components/idk";
 import { PageTitle } from "@/components/page-title";
 import Link from "next/link";
 import React, { useState, useEffect, useTransition } from "react";
@@ -34,9 +36,9 @@ const Read = () => {
         title="read"
         description="bro is a terrible reader but yeah here is a list of books i've read or currently reading."
       />
-      <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">
-        {reads &&
-          reads.map((read: read, index: number) => (
+      {reads?.length > 0 ? (
+        <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">
+          {reads.map((read: read, index: number) => (
             <Link
               href={`/read/${read.id}`}
               key={`nom_sonin_${index}_${read.id}`}
@@ -44,7 +46,10 @@ const Read = () => {
               <BookCover book={read} />
             </Link>
           ))}
-      </div>
+        </div>
+      ) : (
+        <IDKBRO />
+      )}
     </div>
   );
 };

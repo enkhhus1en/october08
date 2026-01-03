@@ -10,8 +10,8 @@ type Props = {
 
 export const Text = ({ text }: Props) => {
   return (
-    <div>
-      <div className="text-xs">{text.content}</div>
+    <div className="space-y-1">
+      <div className="text-sm">{text.content}</div>
       <div className="text-[0.6rem] text-red-400 dark:text-red-200">
         {datetimeformat(text.createdAt)}
       </div>

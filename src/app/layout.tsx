@@ -31,7 +31,7 @@ export default function RootLayout({
               <ThemeProvider attribute="class" defaultTheme="dark">
                 <Header />
                 <Tracker />
-                <main className="py-8">{children}</main>
+                <main className="py-10">{children}</main>
               </ThemeProvider>
             </AuthProvider>
           </div>

@@ -10,6 +10,8 @@ const TextAdmin = () => {
   const [textList, setTextList] = useState<text[]>([]);
   const [isPending, startTransition] = useTransition();
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
+  const [editingId, setEditingId] = useState<number | null>(null);
+  const [editContent, setEditContent] = useState<string>("");
 
   useEffect(() => {
     fetchTexts();
@@ -44,6 +46,32 @@ const TextAdmin = () => {
 
         setStatus("success");
         setText("");
+        fetchTexts();
+      } catch (error) {
+        console.error(error);
+        setStatus("error");
+      }
+    });
+  };
+
+  const updateText = async (id: number) => {
+    if (!editContent.trim()) return;
+
+    setStatus("idle");
+
+    startTransition(async () => {
+      try {
+        const res = await fetch("/api/texts", {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ id, content: editContent.trim() }),
+        });
+
+        if (!res.ok) throw new Error("failed");
+
+        setStatus("success");
+        setEditingId(null);
+        setEditContent("");
         fetchTexts();
       } catch (error) {
         console.error(error);
@@ -109,17 +137,59 @@ const TextAdmin = () => {
           {textList &&
             textList.map((text, index) => (
               <div key={`text_${text.id}_${index}`}>
-                <Text text={text} />
-                <button
-                  className="underline text-red-500 text-xs"
-                  onClick={() => {
-                    if (confirm("wanna delete this shit?")) {
-                      text.id && deleteText(Number(text.id));
-                    }
-                  }}
-                >
-                  delete
-                </button>
+                {editingId === text.id ? (
+                  <div className="space-y-2">
+                    <textarea
+                      value={editContent}
+                      onChange={(e) => setEditContent(e.target.value)}
+                      rows={3}
+                      className="block w-full rounded-md dark:bg-white/5 px-3 py-1.5 text-base outline-1 -outline-offset-1 outline-gray-300 dark:outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6"
+                    />
+                    <div className="flex gap-2">
+                      <button
+                        disabled={isPending}
+                        onClick={() => text.id && updateText(Number(text.id))}
+                        className="px-3 outline-1 rounded-sm text-green-500 underline text-xs"
+                      >
+                        save
+                      </button>
+                      <button
+                        onClick={() => {
+                          setEditingId(null);
+                          setEditContent("");
+                        }}
+                        className="px-3 outline-1 rounded-sm underline text-xs"
+                      >
+                        cancel
+                      </button>
+                    </div>
+                  </div>
+                ) : (
+                  <>
+                    <Text text={text} />
+                    <div className="flex gap-2">
+                      <button
+                        className="underline text-blue-500 text-xs"
+                        onClick={() => {
+                          setEditingId(Number(text.id));
+                          setEditContent(text.content || "");
+                        }}
+                      >
+                        edit
+                      </button>
+                      <button
+                        className="underline text-red-500 text-xs"
+                        onClick={() => {
+                          if (confirm("wanna delete this shit?")) {
+                            text.id && deleteText(Number(text.id));
+                          }
+                        }}
+                      >
+                        delete
+                      </button>
+                    </div>
+                  </>
+                )}
               </div>
             ))}
         </div>

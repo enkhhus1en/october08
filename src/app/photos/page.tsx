@@ -33,7 +33,7 @@ const Photos = (props: Props) => {
 
   return (
     <div className="space-y-8">
-      <PageTitle title="photos" />
+      <PageTitle title="photos" description="[◉°]" />
       <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">
         {photos &&
           photos.map((photo: photo, index: number) => (

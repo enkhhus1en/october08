@@ -34,10 +34,6 @@ export default function Watched() {
   const filteredItems =
     filter === "all" ? items : items.filter((item) => item.type === filter);
 
-  if (loading) {
-    return <Dots />;
-  }
-
   return (
     <div className="space-y-8">
       <PageTitle
