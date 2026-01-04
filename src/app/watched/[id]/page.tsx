@@ -6,6 +6,7 @@ import { watched } from "watched";
 import { PageTitle } from "@/components/page-title";
 import { Dots } from "@/components/dots";
 import Link from "next/link";
+import { datetimeformat } from "@/lib/datetime";
 
 const WatchedDetail = () => {
   const params = useParams();
@@ -52,12 +53,6 @@ const WatchedDetail = () => {
 
   return (
     <div className="space-y-3">
-      <Link
-        href="/watched"
-        className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
-      >
-        ← watched
-      </Link>
       <div className="grid md:grid-cols-[280px,1fr] gap-8">
         <div className="w-full flex justify-center items-center">
           {item.coverUrl ? (
@@ -75,27 +70,33 @@ const WatchedDetail = () => {
           )}
         </div>
 
-        <div className="space-y-6">
+        <div className="space-y-3">
           <div className="space-y-3">
-            <h1 className="text-2xl md:text-4xl font-bold tracking-tight leading-tight">
+            <Link
+              href="/watched"
+              className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+            >
+              ← watched
+            </Link>
+            <h1 className="text-xl font-bold tracking-tight leading-tight">
               {item.title}
             </h1>
             <div className="flex flex-wrap items-center gap-2">
               {item.type && (
-                <span className="px-3 py-1 bg-secondary rounded-full text-sm">
+                <span className="px-3 py-1 bg-secondary rounded-full text-xs">
                   {item.type}
                 </span>
               )}
               {item.platform && (
-                <span className="px-3 py-1 bg-secondary rounded-full text-sm">
+                <span className="px-3 py-1 bg-secondary rounded-full text-xs">
                   {item.platform}
                 </span>
               )}
               {item.rating && (
                 <div className="flex items-center gap-1.5 px-3 py-1 bg-yellow-500/10 rounded-full">
-                  <span className="text-yellow-500">★</span>
-                  <span className="font-semibold text-sm">{item.rating}</span>
-                  <span className="text-muted-foreground text-sm">/10</span>
+                  <span className="text-yellow-500 text-sm">★</span>
+                  <span className="font-semibold text-xs">{item.rating}</span>
+                  <span className="text-muted-foreground text-xs">/10</span>
                 </div>
               )}
             </div>
@@ -103,8 +104,8 @@ const WatchedDetail = () => {
 
           {item.notes && (
             <div className="space-y-2">
-              <h2 className="text-lg font-semibold">notes</h2>
-              <p className="text-sm text-muted-foreground leading-relaxed whitespace-pre-wrap">
+              <h2 className="text-md font-semibold">🤔💭</h2>
+              <p className="text-xs text-muted-foreground leading-relaxed whitespace-pre-wrap">
                 {item.notes}
               </p>
             </div>
@@ -112,13 +113,8 @@ const WatchedDetail = () => {
 
           {item.createdAt && (
             <div className="pt-4 border-t">
-              <p className="text-sm text-muted-foreground">
-                posted on{" "}
-                {new Date(item.createdAt).toLocaleDateString("en-US", {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                })}
+              <p className="text-xs text-muted-foreground">
+                ⏱︎ {datetimeformat(item.createdAt)}
               </p>
             </div>
           )}

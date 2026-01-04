@@ -10,6 +10,7 @@
     "format": "npx prettier --write ."
   },
   "dependencies": {
+    "@next/third-parties": "^16.1.1",
     "@prisma/client": "^6.17.1",
     "dayjs": "^1.11.18",
     "next": "15.5.9",
