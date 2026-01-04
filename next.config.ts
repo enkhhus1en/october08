@@ -6,20 +6,25 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "**.ltrbxd.com",
+        pathname: "/**",
       },
       {
         protocol: "https",
         hostname: "**.imdb.com",
+        pathname: "/**",
       },
       {
         protocol: "https",
         hostname: "image.tmdb.org",
+        pathname: "/**",
       },
       {
         protocol: "https",
         hostname: "**.imgur.com",
+        pathname: "/**",
       },
     ],
+    unoptimized: false,
   },
 };
 
