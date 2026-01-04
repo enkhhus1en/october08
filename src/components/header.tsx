@@ -38,7 +38,9 @@ export const Header = () => {
   return (
     <header>
       <div className="flex justify-between items-center">
-        <div className="text-2xl font-bold">{smile}</div>
+        <Link href={"/"}>
+          <div className="text-2xl font-bold">{smile}</div>
+        </Link>
         <div className="hidden md:flex justify-center items-center gap-4 text-sm">
           {navMaps}
         </div>

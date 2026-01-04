@@ -31,8 +31,8 @@ body {
   color: var(--foreground);
   font-family: var(--font-ubuntu-mono);
   transition:
-    background 0.3s ease,
-    color 0.3s ease;
+    background 0.1s ease,
+    color 0.1s ease;
   position: relative;
 }
 

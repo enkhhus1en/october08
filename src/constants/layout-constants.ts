@@ -22,7 +22,7 @@ const navs = [
     link: "/photos",
   },
   {
-    name: "notes",
+    name: "texts",
     link: "/text",
   },
   // {

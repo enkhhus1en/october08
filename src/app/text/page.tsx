@@ -32,7 +32,7 @@ const Texts = (props: Props) => {
 
   return (
     <div className="space-y-8">
-      <PageTitle title="notes" description="bla bla bla" />
+      <PageTitle title="text?" description="bla bla bla" />
       <div className="space-y-6">
         {textList &&
           textList.map((text, index) => (
