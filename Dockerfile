@@ -9,7 +9,7 @@ RUN apk add --no-cache python3 make g++
 COPY package.json yarn.lock ./
 
 # Install dependencies using Yarn
-RUN yarn install --frozen-lockfile
+RUN yarn install
 
 # Copy the rest of the app
 COPY . .
