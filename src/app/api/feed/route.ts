@@ -26,15 +26,15 @@ export async function GET() {
     ]);
 
     const feed: any[] = [
-      ...texts.map((t: text) => ({
+      ...texts.map((t: any) => ({
         ...t,
         type: "text",
       })),
-      ...reads.map((r: read) => ({
+      ...reads.map((r: any) => ({
         ...r,
         type: "read",
       })),
-      ...watched.map((w: watched) => ({
+      ...watched.map((w: any) => ({
         ...w,
         type: "watched",
       })),
@@ -42,7 +42,7 @@ export async function GET() {
       //   ...l,
       //   type: "link",
       // })),
-      photos.map((p: photo) => ({
+      photos.map((p: any) => ({
         ...p,
         type: "photo",
       })),
