@@ -52,7 +52,7 @@ export default function Watched() {
     <div className="space-y-8">
       <PageTitle
         title="watched"
-        description="movies, series, animes and shows I've watched"
+        description="my own letterboxd kinda thing except i can log literally anything here."
       />
       {loading ? (
         <Dots />
