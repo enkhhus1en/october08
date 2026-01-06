@@ -7,6 +7,7 @@ import { PageTitle } from "@/components/page-title";
 import { Dots } from "@/components/dots";
 import Link from "next/link";
 import { datetimeformat } from "@/lib/datetime";
+import { linkify } from "@/lib/linkify";
 
 const WatchedDetail = () => {
   const params = useParams();
@@ -106,7 +107,7 @@ const WatchedDetail = () => {
             <div className="space-y-2">
               <h2 className="text-md font-semibold">🤔💭</h2>
               <p className="text-xs text-muted-foreground leading-relaxed whitespace-pre-wrap">
-                {item.notes}
+                {linkify(item.notes)}
               </p>
             </div>
           )}
